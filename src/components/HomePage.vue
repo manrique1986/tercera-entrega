@@ -9,7 +9,7 @@
           <div class="card-body">
             <p class="card-text">${{ item.precio }}</p>
             <button
-              @click="addToCart(item)"
+              @click="addToCart()"
               class="btn btn-success text-center"
             >
               Agregar
@@ -24,14 +24,18 @@
 <script>
 export default {
   name: "HomePage",
+  props: ["product"],
 
 
   mounted() {
     this.$store.dispatch("getProducts");
   },
   methods:{
-    addToCart(product){
-      this.$store.dispatch("addProductToCart", product)
+    addToCart(){
+      this.$store.dispatch("addProductToCart", {
+        product: this.product,
+        quantity: 1,
+      } )
     }
   }
 };

@@ -10,7 +10,7 @@
       <b-nav-item><router-link to="/HomePage">main</router-link> </b-nav-item>
       <b-nav-item> </b-nav-item>
 
-      <button @click="carrito" class="btn btn-outline-dark">Carrito</button>
+      <button @click="carrito" class="btn btn-outline-dark">Carrito {{cartItemCount}}</button>
     </b-nav>
   </div>
 </template>
@@ -21,6 +21,11 @@ export default {
   methods: {
     carrito(){
       this.$router.push('/carrito')
+    }
+  },
+  computed: {
+    cartItemCount (){
+      return this.$store.getters.cartItemCount;
     }
   }
 };

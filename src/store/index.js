@@ -124,5 +124,8 @@ export default new vuex.Store({
         };
       });
     },
+    cartItemCount (state){
+      return state.cart.length;
+    }
   },
 });

@@ -25,7 +25,7 @@
       ></b-form-input>
     </b-input-group>
 
-    <b-button @click="añadir" variant="primary">Register</b-button>
+    <b-button @click="nuevoUsuario" variant="primary">Register</b-button>
   </b-form>
 </template>
 <script>
@@ -40,7 +40,7 @@ export default {
     };
   },
 methods:{
-    añadir(usuario){
+    nuevoUsuario(usuario){
       this.$store.dispatch("createUser", usuario);
     }
   }
