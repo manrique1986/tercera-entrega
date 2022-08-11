@@ -8,10 +8,7 @@
           <!-- <img :src="getImgUrl()" class="card-img-top d-block w-50" :alt="titulo"> -->
           <div class="card-body">
             <p class="card-text">${{ item.precio }}</p>
-            <button
-              @click="addToCart()"
-              class="btn btn-success text-center"
-            >
+            <button @click="addToCart()" class="btn btn-success text-center">
               Agregar
             </button>
           </div>
@@ -25,17 +22,18 @@
 export default {
   name: "HomePage",
   props: ["product"],
+  cart : [],
 
 
   mounted() {
     this.$store.dispatch("getProducts");
   },
-  methods:{
-    addToCart(){
+  methods: {
+    addToCart() {
       this.$store.dispatch("addProductToCart", {
         product: this.product,
-        quantity: 1,
-      } )
+        cantidad: 1,
+      })
     }
   }
 };
@@ -52,10 +50,13 @@ export default {
   box-shadow: 1px 4px 10px 0 brown;
   float: right;
 }
+
 .img-card {
   width: 150px;
   height: 150px;
 }
+
 .product {
   margin: 75px;
-}</style>
+}
+</style>

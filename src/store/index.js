@@ -35,10 +35,10 @@ export default new vuex.Store({
       state.products = payload;
     },
     invrementoProduct(state, item) {
-      item.quantity++;
+      item.cantidad++;
     },
-    addProductToCart(state, payload) {
-      state.cart.unshift(payload);
+    addProductToCart(state, products) {
+      state.cart.push({ id: products.id, cantidad: 1 });
     },
     decrementCOuntaProducto(state, product) {
       product.count--;
@@ -51,7 +51,8 @@ export default new vuex.Store({
       state.cart.splice(index, 1)
     },
 
-  
+
+
   },
   actions: {
     async getProducts({ commit }) {
@@ -104,10 +105,12 @@ export default new vuex.Store({
       context.commit("añadir", resp.data);
     },
 
-    deleteProductCart(context, index){
-      
-     
+    deleteProductCart(context, index) {
+
+
+
       context.commit("deleteProductFromCart", index);
+
 
     }
   },
@@ -120,12 +123,15 @@ export default new vuex.Store({
         return {
           titulo: product.titulo,
           precio: product.precio,
-          quantity: item.quantity,
+          cantidad: item.cantidad,
         };
       });
     },
-    cartItemCount (state){
+    cartItemCount(state) {
       return state.cart.length;
+    },
+    cartTotal(state, getters) {
+      return getters.productsOnCart.reduce((total, current) => total + current.precio * current.cantidad, 0)
     }
   },
 });
